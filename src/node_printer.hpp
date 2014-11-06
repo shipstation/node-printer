@@ -18,6 +18,17 @@
  */
 MY_NODE_MODULE_CALLBACK(PrintDirect);
 
+/**
+ * Send file to printer
+ *
+ * @param filename String/NativeBuffer, mandatory, filename to print
+ * @param docname String, mandatory, specifying document name
+ * @param printername String, mandatory, specifying printer name
+ *
+ * @returns true for success, false for failure.
+ */
+MY_NODE_MODULE_CALLBACK(PrintFile);
+
 /** Retrieve all printers and jobs
  * posix: minimum version: CUPS 1.1.21/OS X 10.4
  */

@@ -355,3 +355,30 @@ MY_NODE_MODULE_CALLBACK(PrintDirect)
     }
     MY_NODE_MODULE_RETURN_VALUE(V8_VALUE_NEW(Number, job_id));
 }
+
+MY_NODE_MODULE_CALLBACK(PrintFile)
+{
+    MY_NODE_MODULE_HANDLESCOPE;
+    REQUIRE_ARGUMENTS(iArgs, 3);
+
+    // can be string or buffer
+    if(iArgs.Length() <= 0)
+    {
+        RETURN_EXCEPTION_STR("Argument 0 missing");
+    }
+
+    REQUIRE_ARGUMENT_STRING(iArgs, 1, filename);
+    REQUIRE_ARGUMENT_STRING(iArgs, 2, docname);
+    REQUIRE_ARGUMENT_STRING(iArgs, 3, printername);
+
+	// TODO: add support for options
+    int num_options = 0;
+    cups_option_t *options = NULL;
+
+    int job_id = cupsPrintFile(*printername, *filename, *docname, num_options, options);
+	if(job_id == 0){
+		MY_NODE_MODULE_RETURN_VALUE(V8_STRING_NEW_UTF8(cupsLastErrorString()));
+	} else {
+		MY_NODE_MODULE_RETURN_VALUE(V8_VALUE_NEW(Number, job_id));
+	}
+}
