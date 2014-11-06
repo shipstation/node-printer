@@ -367,15 +367,15 @@ MY_NODE_MODULE_CALLBACK(PrintFile)
         RETURN_EXCEPTION_STR("Argument 0 missing");
     }
 
-    REQUIRE_ARGUMENT_STRING(iArgs, 1, filename);
-    REQUIRE_ARGUMENT_STRING(iArgs, 2, docname);
-    REQUIRE_ARGUMENT_STRING(iArgs, 3, printername);
+    REQUIRE_ARGUMENT_STRING(iArgs, 0, filename);
+    REQUIRE_ARGUMENT_STRING(iArgs, 1, docname);
+    REQUIRE_ARGUMENT_STRING(iArgs, 2, printer);
 
 	// TODO: add support for options
     int num_options = 0;
     cups_option_t *options = NULL;
 
-    int job_id = cupsPrintFile(*printername, *filename, *docname, num_options, options);
+    int job_id = cupsPrintFile(*printer, *filename, *docname, num_options, options);
 	if(job_id == 0){
 		MY_NODE_MODULE_RETURN_VALUE(V8_STRING_NEW_UTF8(cupsLastErrorString()));
 	} else {

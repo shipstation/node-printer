@@ -21,11 +21,11 @@ MY_NODE_MODULE_CALLBACK(PrintDirect);
 /**
  * Send file to printer
  *
- * @param filename String/NativeBuffer, mandatory, filename to print
+ * @param filename String, mandatory, specifying filename to print
  * @param docname String, mandatory, specifying document name
- * @param printername String, mandatory, specifying printer name
+ * @param printer String, mandatory, specifying printer name
  *
- * @returns true for success, false for failure.
+ * @returns jobId for success, or error message for failure.
  */
 MY_NODE_MODULE_CALLBACK(PrintFile);
 
