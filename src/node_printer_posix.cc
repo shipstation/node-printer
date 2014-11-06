@@ -100,10 +100,15 @@ namespace
         }
         if(i_status == 0)
         {
+			// TJS: Just say it's an unknown status rather than blowing up
+			result_printer_job_status->Set(i_status++, V8_STRING_NEW_UTF8("UNSUPPORTED"));
+
+			/*
             // A new status? return error then
             std::string error_str("wrong job status: ");
             error_str += job->state;
             return error_str;
+			*/
         }
         
         result_printer_job->Set(V8_STRING_NEW_UTF8("status"), result_printer_job_status);
