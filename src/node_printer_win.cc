@@ -630,3 +630,8 @@ MY_NODE_MODULE_CALLBACK(PrintDirect)
     }
     MY_NODE_MODULE_RETURN_VALUE(V8_VALUE_NEW(Number, dwJob));
 }
+
+MY_NODE_MODULE_CALLBACK(PrintFile)
+{
+	RETURN_EXCEPTION_STR("Not yet implemented on Windows");
+}
